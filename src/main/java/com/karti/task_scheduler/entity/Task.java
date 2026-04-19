@@ -3,6 +3,7 @@ package com.karti.task_scheduler.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +36,12 @@ public class Task{
 
     private Integer retryCount;
 
-    
+    @PrePersist
+    public void prePersist(){
+        this.createdAt = LocalDateTime.now();
+
+        if(this.status==null) status=Status.PENDING;
+        if(this.retryCount==null) retryCount=0;
+    }
 
 }
