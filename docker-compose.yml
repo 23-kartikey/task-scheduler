@@ -9,6 +9,7 @@ services:
       POSTGRES_DB: task_scheduler
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      TZ: Asia/Kolkata
     ports:
       - "5432:5432"
     volumes:
