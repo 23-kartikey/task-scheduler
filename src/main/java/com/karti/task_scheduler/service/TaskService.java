@@ -24,4 +24,8 @@ public class TaskService {
         return repo.findAll();
     }
 
+    public Task getTasks(Long id){
+        return repo.findById(id).orElse(null);
+    }
+
 }
