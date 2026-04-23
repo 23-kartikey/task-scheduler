@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.karti.task_scheduler.entity.Status;
 import com.karti.task_scheduler.entity.Task;
+import com.karti.task_scheduler.exception.TaskNotFoundException;
 import com.karti.task_scheduler.repository.TaskRepository;
 
 @Service
@@ -26,6 +28,13 @@ public class TaskService {
 
     public Task getTasks(Long id){
         return repo.findById(id).orElse(null);
+    }
+
+    public Task completeTask(Long id){
+        Task task=repo.findByIdAndStatusIs(id, Status.PENDING).orElseThrow(()->new TaskNotFoundException(id));
+        task.setStatus(Status.COMPLETED);
+        repo.save(task); 
+        return task;
     }
 
 }
