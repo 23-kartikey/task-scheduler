@@ -3,11 +3,11 @@ package com.karti.task_scheduler.exception;
 public class TaskNotFoundException extends RuntimeException{
     
     public TaskNotFoundException(){
-        throw new RuntimeException();
+        super("Task not found");
     }
 
     public TaskNotFoundException(Long id){
-        throw new RuntimeException("Task with id "+id+" not found");
+        super("Task with id "+id+" not found");
     }
 
     public TaskNotFoundException(String msg){
