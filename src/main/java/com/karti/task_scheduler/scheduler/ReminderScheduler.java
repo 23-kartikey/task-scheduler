@@ -34,8 +34,9 @@ public class ReminderScheduler {
     public void checkTasks(){
         List<Task> tasks=repo.findByReminderTimeBeforeAndStatusNot(LocalDateTime.now(), Status.COMPLETED);
         for(Task task: tasks){
-            logger.info("Incomplete: "+task.getTitle());
+            logger.info("Incomplete: "+task.getId()+" "+task.getTitle()+", "+task.getRetryCount()+" "+task.getStatus().toString());
         }
     }
 
 }
+    
