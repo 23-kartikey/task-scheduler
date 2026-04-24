@@ -10,10 +10,18 @@ import com.karti.task_scheduler.entity.Status;
 import com.karti.task_scheduler.entity.Task;
 
 public interface TaskRepository extends JpaRepository<Task, Long>{
+
+    public List<Task> findByStatus(Status status);
     
-    public List<Task> findByReminderTimeBeforeAndStatusNot(LocalDateTime now, Status status);
+    public List<Task> findByReminderTimeBeforeAndStatusIs(LocalDateTime now, Status status);
 
     public Optional<Task> findByIdAndStatusIs(Long id, Status status);
 
-    public List<Task> findByRetryCountGreaterThanAndStatusNot(int count, Status status);
+    public List<Task> findByRetryCountIsAndStatusIs(int count, Status status);
+
+    public List<Task> findByReminderTimeBeforeAndStatusIsAndRetryCountLessThan(LocalDateTime now, Status status, int retryCount);
+
+    public List<Task> findByReminderTimeBeforeAndStatusIsAndRetryCountGreaterThan(LocalDateTime now, Status status, int retryCount);
+
+    public void deleteByStatus(Status status);
 }
