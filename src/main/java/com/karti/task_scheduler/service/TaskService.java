@@ -33,7 +33,7 @@ public class TaskService {
     public Task completeTask(Long id){
         Task task=repo.findByIdAndStatusIs(id, Status.PENDING).orElseThrow(()->new TaskNotFoundException(id));
         task.setStatus(Status.COMPLETED);
-        repo.save(task); 
+        repo.save(task);
         return task;
     }
 
