@@ -22,9 +22,7 @@ import lombok.Setter;
 @Table(name="tasks")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Task{
     
     @Id
